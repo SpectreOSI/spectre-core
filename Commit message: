@@ -1,0 +1,40 @@
+
+3. Paste:
+
+```md
+# Security Policy
+
+Spectre takes security seriously and encourages responsible disclosure of vulnerabilities.
+
+## Reporting a Vulnerability
+
+If you discover a security issue, please email:
+
+**security@spectre.dev**
+
+Please include:
+
+- Description of the issue
+- Steps to reproduce
+- Potential impact
+- Any suggested fixes
+
+We ask that reporters **do not publicly disclose vulnerabilities**, including opening GitHub issues, until a fix is released.
+
+## Scope
+
+This policy applies to:
+
+- Spectre Core (Solana program)
+- Spectre SDKs
+- Relayer reference implementations
+- Documentation and scripts
+
+## Cryptography Notice
+
+Spectre uses hashing primitives (SHA-256, Blake3) and Merkle-based commitments.  
+The system does **not** provide full zero-knowledge privacy, and should not be treated as such.
+
+## Rewards
+
+At this time, Spectre does not operate a bounty program, but we do publicly acknowledge valid reports unless anonymity is requested.
