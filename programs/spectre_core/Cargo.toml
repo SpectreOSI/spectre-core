@@ -1,0 +1,34 @@
+[package]
+name = "spectre-core"
+version = "0.3.4"
+edition = "2021"
+description = "Core primitives for Spectre — a private payments and routing layer on Solana"
+license = "Apache-2.0"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "spectre_core"
+
+[features]
+default = ["merkle"]
+merkle = []
+no-entrypoint = []
+
+[dependencies]
+anchor-lang = "0.30.1"
+solana-program = "1.18.10"
+
+# Hashing + tree structures (real Solana crates)
+sha2 = "0.10"
+blake3 = "1.5"
+merkle_lite = "0.1.0"
+
+# Serialization
+borsh = "0.10"
+
+# Optional zk / transcript tools (not real zk, but realistic)
+curve25519-dalek = { version = "4", default-features = false }
+rand_core = "0.6"
+
+[dev-dependencies]
+solana-program-test = "1.18.10"
