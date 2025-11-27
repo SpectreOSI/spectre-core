@@ -1,0 +1,52 @@
+name: Spectre CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  rust-tests:
+    name: Rust program checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Install Anchor CLI (cached)
+        run: |
+          cargo install --git https://github.com/coral-xyz/anchor avm --locked || true
+          avm install latest
+          avm use latest
+
+      - name: Build Spectre Core
+        working-directory: programs/spectre_core
+        run: |
+          anchor build
+
+  ts-build:
+    name: TypeScript SDK build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install deps & build SDK
+        working-directory: packages/sdk
+        run: |
+          npm install
+          npm run build
